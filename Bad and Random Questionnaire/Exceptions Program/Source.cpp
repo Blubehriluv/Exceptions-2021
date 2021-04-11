@@ -99,6 +99,7 @@ void EnterAge() {
 		std::cin >> userAge;
 		throw userAge;
 	}
+	// Catches the number and assigns it to an age bracket
 	catch (int ageBracket) {
 		if (ageBracket > 99) {
 			std::cout << "I see you are of the immortal kind." << std::endl;
@@ -140,12 +141,13 @@ void FavoriteColor() {
 	std::cout << "User favorite color: ";
 	std::cin >> userColor;
 	std::cout << std::endl;
+	// The program will try to convert the string input to an int.
 	try {
 		int stringToIntput = stoi(userColor);
-		throw stringToIntput;
+		throw stringToIntput;	// The final result is thrown to make sure the program won't break.
 	}
-	catch (int colorNumber) {
-
+	catch (int colorNumber) {	// If the input qualifies as an int/number, the program continues
+		// If the number is on the list
 		if (colorNumber >= 1 && colorNumber <= 9) {
 			if (colorNumber >= 1 && colorNumber <= 4) {
 				std::cout << "What a wonderful color.  Moving on." << std::endl;
@@ -159,11 +161,12 @@ void FavoriteColor() {
 			std::cout << std::endl;
 			SimonSaysMath();
 		}
+		// If a number that isn't on the list is chosen
 		else {
 			ErrorHandler("Invalid number chosen.");
 		}
 	}
-	catch (std::invalid_argument s) {
+	catch (std::invalid_argument s) {	//If the input isn't a number and falls under a string.
 		std::cout << "Just the number please." << std::endl;
 		ErrorHandler("Invalid number chosen.");
 	}
@@ -215,23 +218,22 @@ void SimonSaysMath() {
 		std::cout << "Equation: " << num3 << " x ? = 0." << std::endl;
 		std::cout << "? = ";
 		std::cin >> userStringInput;
-	
+		// Program will attempt to convert the string input to an int
 		try {
 			int stringToIntput = stoi(userStringInput);
 			throw stringToIntput;
 		}
-		catch (std::invalid_argument s) {
+		catch (std::invalid_argument s) {	// If the input was a string
 			std::cout << "I didn't ask for a word, I wanted a number." << std::endl;
 		}
-		catch (int e) {
-			
-			 if (e == 0) {
+		catch (int e) {		// If the input is actually a number
+			 if (e == 0) {	// If the answer is 0
 				
 				std::cout << "Whoa! You divided by zero!" << std::endl;
 				std::cout << "You almost broke my program!" << std::endl;
 				break;
 			}
-			if (e != 0) {
+			if (e != 0) {	// If the answer is not zero
 				std::cout << "That's not quite right, try again." << std::endl;
 			}
 		}
@@ -263,6 +265,8 @@ void ErrorHandler(std::string error) {
 }
 
 int main() {
+	// Gives me random numbers to play with.
 	srand(time(NULL));
+	// Begins the program
 	Introduction();
 }
